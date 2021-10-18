@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import styles from "./TweetInput.module.css";
-import { storage, db, auth } from "../firebase";
-import firebase from "firebase/app";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
+import { storage, db, auth } from "../firebase";
 import { Avatar, Button, IconButton } from "@material-ui/core";
-import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
+import firebase from "firebase/app";
+import AddPhotoIcon from "@material-ui/icons/AddAPhoto";
 
-function TweetInput() {
+const TweetInput: React.FC = () => {
   const user = useSelector(selectUser);
   const [tweetImage, setTweetImage] = useState<File | null>(null);
   const [tweetMsg, setTweetMsg] = useState("");
-
   const onChangeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files![0]) {
       setTweetImage(e.target.files![0]);
@@ -81,11 +80,13 @@ function TweetInput() {
             type="text"
             autoFocus
             value={tweetMsg}
-            onChange={(e) => setTweetMsg(e.target.value)}
+            onChange={(e) => {
+              setTweetMsg(e.target.value);
+            }}
           />
           <IconButton>
             <label>
-              <AddAPhotoIcon
+              <AddPhotoIcon
                 className={
                   tweetImage ? styles.tweet_addIconLoaded : styles.tweet_addIcon
                 }
@@ -98,7 +99,6 @@ function TweetInput() {
             </label>
           </IconButton>
         </div>
-
         <Button
           type="submit"
           disabled={!tweetMsg}
@@ -111,6 +111,6 @@ function TweetInput() {
       </form>
     </>
   );
-}
+};
 
 export default TweetInput;
