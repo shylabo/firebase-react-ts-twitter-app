@@ -1,3 +1,7 @@
+## Overview
+
+This is a Twitter clone application that enables you to tweet, reply, and engage with other users, utilizing TypeScript, React, and Firebase. Additionally, the application includes Google account authentication to ensure secure access to your account.
+
 ## setup
 
 ```
